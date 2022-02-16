@@ -32,3 +32,10 @@ Route::get('/email', function () {
     Mail::to('sterotech@outlook.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });
+Route::get('/customers', [App\Http\Controllers\CustomersController::class, 'index'])->name('customers');
+
+Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])->name('sales');
+
+Route::get('/reports', [App\Http\Controllers\ReportsController::class, 'index'])->name('reports');
+
+Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products');
