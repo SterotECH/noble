@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="sidebar">
-        <a href="{{ route('home') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+        <a href="{{ route('home') }}" class="{{ request()->is('home') ? 'active' : '' }}">
             <span class="material-icons-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
@@ -31,7 +31,7 @@
             <h3>Messages</h3>
             <span class="message-count">20</span>
         </a>
-        <a href="{{ route('products') }}" class="{{ request()->is('products/*') }}">
+        <a href="products" class="{{ request()->is('products/*') ? 'active' : '' }}">
             <span class="material-icons-sharp">shopping_cart</span>
             <h3>Product</h3>
         </a>
@@ -43,10 +43,7 @@
             <span class="material-icons-sharp">settings</span>
             <h3>Settings</h3>
         </a>
-        <a href="{{ route('products') }}" {{ request()->is('product/create') ? 'active' : '' }}>
-            <span class="material-icons-sharp">add</span>
-            <h3>Add Product</h3>
-        </a>
+
         <div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">

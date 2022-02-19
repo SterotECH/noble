@@ -57,7 +57,66 @@ body {
     overflow-x: hidden;
     color: var(--color-dark);
 }
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex {
+    display: flex;
+}
+.item-center {
+    align-items: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.inline-flex {
+    display: inline-flex;
+}
+.relative {
+    position: relative;
+}
 
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+.py-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+.ml-2 {
+    margin-left: 0.5rem !important;
+}
+.flex-1 {
+    flex-grow: 1;
+}
+.text-sm-start {
+    text-align: left !important;
+}
+
+.hidden {
+    display: none;
+}
+.text-sm-end {
+    text-align: right !important;
+}
+
+.text-sm-center {
+    text-align: center !important;
+}
+.leading-1 {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+/* .pages {
+    height: 2rem !important;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem !important;
+    align-items: center;
+} */
 .container {
     display: grid;
     height: 98vh;
@@ -143,6 +202,13 @@ b {
     color: var(--color-success);
 }
 
+.error {
+    width: 80%;
+    margin: 10px auto;
+    background: var(--color-danger);
+    padding: 1rem;
+    border-radius: 0.9rem;
+}
 aside {
     height: 100vh;
 }
@@ -358,7 +424,7 @@ main .recent-sales {
 }
 
 main .recent-sales h2 {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 main .recent-sales table {
@@ -369,6 +435,9 @@ main .recent-sales table {
     text-align: center;
     box-shadow: var(--box-shadow);
     transition: all 4ms ease;
+}
+main .recent-sales table tr {
+    text-align: left;
 }
 main table tbody td {
     height: 2.8rem;
@@ -414,6 +483,9 @@ main .recent-sales a {
     width: 4.2rem;
     cursor: pointer;
     border-radius: var(--border-raduis-1);
+}
+.cursor-default {
+    cursor: default;
 }
 .right .theme-toggler span {
     font-size: 1.2rem;
@@ -689,4 +761,78 @@ main .recent-sales a {
     .register-block {
         height: 100vh;
     }
+    .sm:hidden {
+        display: none;
+    }
+}
+
+/* ============= CREATE PRODUCT ============= */
+form {
+    width: 80%;
+    margin: 10px auto;
+}
+.form-group {
+    display: block;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+.col-5 {
+    margin-bottom: 1rem;
+}
+form input {
+    display: inline-block;
+    width: 100%;
+    line-height: 2rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    background: var(--color-background);
+    padding: 0 20px;
+    border: solid 1px var(--color-white);
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    outline: none;
+    color: #626262;
+}
+input[type="submit"] {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0 20px;
+    background-color: var(--color-danger);
+    background-size: 20px 20px;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        rgba(0, 0, 0, 0) 75%,
+        rgba(0, 0, 0, 0)
+    );
+    border: solid 1px var(--color-danger);
+    border-bottom-width: 3px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.form * {
+    box-sizing: border-box;
+}
+
+.add {
+    background: var(--color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* line-height: 1;
+    height: 2rem; */
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }

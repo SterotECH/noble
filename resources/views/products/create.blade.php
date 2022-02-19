@@ -9,11 +9,55 @@
         <!-- --------------- END OF INSIGHTS ------------ -->
         <div class="recent-sales">
             <h2>Add Product</h2>
-            <form action="">
-                <div class="form-group">
-                    <label for="product_name">Product Name</label>
-                    <input type="text" name="product_name" value="" class="">
+            @if ($errors->any())
+                <div class="error">
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red">
+                            {{ $error }}
+                        </li>
+                    @endforeach
                 </div>
+            @endif
+
+            <form action="/products" Method="POST">
+                @csrf
+
+                <div class="form-group">
+                    <div class="col-5">
+                        <label for="product_name" class="text-muted">Product Name</label>
+                    </div>
+                    <div class="col-7">
+                        <input type="text" name="product_name" placeholder="Product Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-5">
+                        <label for="product_name" class="text-muted">Cost Price (GHC)</label>
+                    </div>
+                    <div class="col-7">
+                        <input type="number" name="cost_price" placeholder="Cost Price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-5">
+                        <label for="product_name" class="text-muted">Selling Price (GHC)</label>
+                    </div>
+                    <div class="col-7">
+                        <input type="number" name="selling_price" placeholder="Selling Price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-5">
+                        <label for="product_name" class="text-muted">Quantity</label>
+                    </div>
+                    <div class="col-7">
+                        <input type="number" name="quantity" placeholder="Quantity">
+                    </div>
+                </div>
+                <input type="submit" value="Add Product">
             </form>
         </div>
     </main>

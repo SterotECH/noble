@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -38,4 +39,4 @@ Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])->na
 
 Route::get('/reports', [App\Http\Controllers\ReportsController::class, 'index'])->name('reports');
 
-Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products');
+Route::resource('/products', ProductsController::class);

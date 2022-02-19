@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -13,7 +14,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $key = 0;
+        $products = Product::paginate(
+            9
+        );
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -23,7 +28,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -34,7 +39,21 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_name' => 'required | string ',
+            'cost_price' => 'required|integer|min:10|max:10000',
+            'selling_price' => 'required | min: 0 | max: 100',
+            'quantity' => 'required|min:1|max:100'
+        ]);
+
+        $product = Product::create([
+            'product_name' => $request->input('product_name'),
+            'cost_price' => $request->input('cost_price'),
+            'selling_price' => $request->input('selling_price'),
+            'quantity' => $request->input('quantity'),
+        ]);
+
+        return redirect('/products');
     }
 
     /**
@@ -45,7 +64,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        //$products = Product::find($id);
+        //dd($products);
+        return view('products.show')->with('product', $product);
     }
 
     /**
@@ -56,7 +78,10 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id)->first();
+        // dd($car);
+
+        return view('products.edit')->with('product', $product);
     }
 
     /**
@@ -68,7 +93,17 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validated();
+
+        $car = Product::where('id', $id)->update([
+            'product_name' => $request->input('product_name'),
+            'cost_price' => $request->input('cost_price'),
+            'selling_price' => $request->input('selling_price'),
+            'quantity' => $request->input('quantity'),
+
+        ]);
+
+        return redirect('/products');
     }
 
     /**
@@ -77,8 +112,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('/products');
     }
 }
