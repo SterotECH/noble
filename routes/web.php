@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SalesController;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -33,10 +34,16 @@ Route::get('/email', function () {
     Mail::to('sterotech@outlook.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });
-Route::get('/customers', [App\Http\Controllers\CustomersController::class, 'index'])->name('customers');
+Route::controller(
+    Route::resource('/customers', CustomersController::class)
+);
 
-Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])->name('sales');
+Route::controller(
+    Route::resource('/sales', SalesController::class)
+);
 
 Route::get('/reports', [App\Http\Controllers\ReportsController::class, 'index'])->name('reports');
 
-Route::resource('/products', ProductsController::class);
+Route::controller(
+    Route::resource('/products', ProductsController::class)
+);

@@ -29,7 +29,6 @@
                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
         @endif
-
     @else
         <div class="container">
             <!-- -------- START OF ASIDE ------------ -->
@@ -47,7 +46,7 @@
                     <div class="updates">
                         <div class="update">
                             <div class="profile-photo">
-                                <img src="img/profile-2.jpg" alt="user avatar" />
+                                <img src="{{ asset('storage/profile-4.jpg') }}" alt="user avatar" />
                             </div>
                             <div class="message">
                                 <p><b>Stero tECH </b>bought clair man for GH10.00</p>
@@ -56,7 +55,7 @@
                         </div>
                         <div class="update">
                             <div class="profile-photo">
-                                <img src="img/profile-3.jpg" alt="user avatar" />
+                                <img src="{{ asset('storage/profile-3.jpg') }}" alt="user avatar" />
                             </div>
                             <div class="message">
                                 <p><b>Stero tECH </b>bought clair man for GH10.00</p>
@@ -65,7 +64,7 @@
                         </div>
                         <div class="update">
                             <div class="profile-photo">
-                                <img src="img/profile-4.jpg" alt="user avatar" />
+                                <img src="{{ asset('storage/profile-2.jpg') }}" alt="user avatar" />
                             </div>
                             <div class="message">
                                 <p><b>Stero tECH </b>bought clair man for GH10.00</p>
@@ -86,8 +85,12 @@
                                 <h3>DEBTORS</h3>
                                 <small class="text-muted">last 24 Hours</small>
                             </div>
-                            <h5 class="success">+39&percnt;</h5>
-                            <h3>3847</h3>
+                            <div>
+                                <h5 class="success">+39&percnt;</h5>
+                            </div>
+                            <div>
+                                <h3>3847</h3>
+                            </div>
                         </div>
                     </div>
                     <div class="item ofline">
@@ -99,8 +102,12 @@
                                 <h3>CREDITORS</h3>
                                 <small class="text-muted">last 24 Hours</small>
                             </div>
-                            <h5 class="danger">-12&percnt;</h5>
-                            <h3>1100</h3>
+                            <div>
+                                <h5 class="danger">-12&percnt;</h5>
+                            </div>
+                            <div>
+                                <h3>1100</h3>
+                            </div>
                         </div>
                     </div>
                     <div class="item customers">
@@ -112,8 +119,12 @@
                                 <h3>CUSTOMERS</h3>
                                 <small class="text-muted">last 24 Hours</small>
                             </div>
-                            <h5 class="success">+20&percnt;</h5>
-                            <h3>500</h3>
+                            <div>
+                                <h5 class="success">+20&percnt;</h5>
+                            </div>
+                            <div>
+                                <h3>500</h3>
+                            </div>
                         </div>
                     </div>
                 </div>

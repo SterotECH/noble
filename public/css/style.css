@@ -18,7 +18,7 @@
     --border-raduis-2: 0.8rem;
     --border-raduis-3: 1.2rem;
 
-    --card-padding: 1.8rem;
+    --card-padding: 1.5rem;
     --pading-1: 1.2rem;
 
     --box-shadow: 0 2rem 3rem var(--color-light);
@@ -46,7 +46,11 @@
 html {
     font-size: 14px;
 }
-
+svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--color-white);
+}
 body {
     width: 100vw;
     height: 100vh;
@@ -123,7 +127,8 @@ body {
     width: 98%;
     margin: 0 auto;
     gap: 1.8rem;
-    grid-template-columns: 14rem auto 23rem;
+    grid-template: 1fr/14rem auto 23rem;
+    grid-template-areas: "sidebar main right";
 }
 
 a {
@@ -210,7 +215,8 @@ b {
     border-radius: 0.9rem;
 }
 aside {
-    height: 100vh;
+    grid-area: sidebar;
+    /* height: 100vh; */
 }
 
 aside .top {
@@ -247,7 +253,8 @@ aside h3 {
     font-weight: 300;
 }
 
-aside .sidebar a {
+aside .sidebar a,
+aside .sidebar div {
     display: flex;
     color: var(--color-info-dark);
     margin-left: 2rem;
@@ -260,12 +267,13 @@ aside .sidebar a {
 aside .sidebar a span img {
     color: var(--color-info-dark);
 }
-aside .sidebar a span {
+aside .sidebar a span,
+aside .sidebar div span {
     font-size: 1.6rem;
     transition: all 0.4s ease;
 }
 
-aside .sidebar a:last-child {
+aside .sidebar div {
     position: absolute;
     bottom: 2rem;
     width: 100%;
@@ -277,7 +285,8 @@ aside .sidebar a.active {
     margin-left: 0;
 }
 
-aside .sidebar a.active::before {
+aside .sidebar a.active::before,
+aside .sidebar div.active::before {
     content: "";
     width: 6px;
     height: 100%;
@@ -290,12 +299,16 @@ aside .sidebar a.active span {
 }
 
 aside .sidebar a:hover,
-aside .sidebar a:focus {
+aside .sidebar a:focus,
+aside .sidebar div:focus,
+aside .sidebar div:hover {
     color: var(--color-primary);
 }
 
 aside .sidebar a:hover span,
-aside .sidebar a:focus span {
+aside .sidebar a:focus span,
+aside .sidebar div:focus span,
+aside .sidebar div:hover span {
     margin-left: 1rem;
 }
 
@@ -309,6 +322,7 @@ aside .sidebar .message-count {
 
 /* ============ MAIN ================ */
 main {
+    grid-area: main;
     margin-top: 1.4rem;
 }
 
@@ -335,7 +349,7 @@ main .insights > div {
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-raduis);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     box-shadow: var(--box-shadow);
     transition: all 4ms ease;
 }
@@ -461,6 +475,7 @@ main .recent-sales a {
 
 /* ====================== RIGHT ================ */
 .right {
+    grid-area: right;
     margin-top: 1.4rem;
 }
 
@@ -483,6 +498,9 @@ main .recent-sales a {
     width: 4.2rem;
     cursor: pointer;
     border-radius: var(--border-raduis-1);
+}
+.right .theme-toggler svg {
+    fill: #fff;
 }
 .cursor-default {
     cursor: default;
@@ -561,8 +579,8 @@ main .recent-sales a {
 
 .right .sales-analytics .item .right {
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: space-between;
+    align-items: center;
     margin: 0;
     width: 100%;
 }
@@ -587,7 +605,7 @@ main .recent-sales a {
 @media screen and (max-width: 1200px) {
     .container {
         width: 94%;
-        grid-template-columns: 7rem auto 23rem;
+        grid-template-columns: 1fr/7rem auto 23rem;
     }
 
     aside .logo h1 {
@@ -626,12 +644,14 @@ main .recent-sales a {
 
     main table thead tr th:last-child,
     main table thead tr th:first-child,
-    main table thead tr th:nth-child(2) {
+    main table thead tr th:nth-child(3),
+    main table thead tr th:nth-child(4) {
         display: none;
     }
     main table tbody tr td:last-child,
     main table tbody tr td:first-child,
-    main table tbody tr td:nth-child(2) {
+    main table tbody tr td:nth-child(3),
+    main table tbody tr td:nth-child(4) {
         display: none;
     }
 
@@ -643,7 +663,8 @@ main .recent-sales a {
 @media screen and (max-width: 768px) {
     .container {
         width: 100%;
-        grid-template-columns: 1fr;
+        display: block;
+        /* grid-template-columns: 1fr; */
     }
 
     aside {
@@ -656,6 +677,7 @@ main .recent-sales a {
         height: 100vh;
         padding-right: var(--card-padding);
         display: none;
+        top: 11%;
         animation: showMenu 500ms ease forwards;
     }
     @keyframes showMenu {
@@ -772,14 +794,22 @@ form {
     margin: 10px auto;
 }
 .form-group {
-    display: block;
+    display: flex;
     font-size: 1.2rem;
-    padding: 1rem;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    align-content: space-between;
 }
 .col-5 {
+    flex: 1 1 10rem;
     margin-bottom: 1rem;
 }
-form input {
+.col-7 {
+    flex: 1 1 10rem;
+    margin-bottom: 1rem;
+}
+form input,
+form select {
     display: inline-block;
     width: 100%;
     line-height: 2rem;
@@ -794,6 +824,13 @@ form input {
     transition: all 0.5s ease;
     outline: none;
     color: #626262;
+}
+select {
+    line-height: 2;
+    font-size: 1rem;
+}
+input:placeholder {
+    font-style: italic;
 }
 input[type="submit"] {
     position: relative;
@@ -835,4 +872,48 @@ input[type="submit"] {
     text-align: center;
     padding: 0.5rem;
     border-radius: 0.5rem;
+}
+
+.flex-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.flex-wrap figure,
+.flex-wrap div {
+    flex: 1 1 20rem;
+}
+.flex-wrap figure {
+    margin: 10% 1rem;
+    border-radius: 1rem;
+    width: 20rem;
+
+    object-fit: cover;
+    overflow: hidden;
+}
+.flex-wrap figure img {
+    transition: all 5ms linear;
+}
+.flex-wrap figure:hover img {
+    filter: blur(01);
+    transition: all 5ms linear;
+}
+
+.flex-wrap div {
+    /* display: flex; */
+    /* align-items: center; */
+    margin-top: 1rem;
+}
+
+.flex-wrap div p {
+    justify-content: end;
+    padding-top: 0.5rem;
+    font-size: 1.2rem;
+}
+w-6 {
+    width: 1rem;
+}
+h-6 {
+    height: 1rem;
 }

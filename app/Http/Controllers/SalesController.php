@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -13,7 +14,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        return view('sales.index');
     }
 
     /**
@@ -23,7 +24,8 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        $prod = Product::all();
+        return view('sales.create', compact('prod'));
     }
 
     /**

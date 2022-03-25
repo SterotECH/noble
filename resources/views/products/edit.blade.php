@@ -19,9 +19,9 @@
                 </div>
             @endif
 
-            <form action="/products" Method="POST" enctype="multipart/form-data">
+            <form action="/products/{{ $product->id }}" Method="POST">
                 @csrf
-
+                @method('PUT')
 
                 <div class="form-group">
                     <div class="col-5">
@@ -32,42 +32,51 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <div class="col-5">
                         <label for="product_name" class="text-muted">Product Name</label>
                     </div>
                     <div class="col-7">
-                        <input type="text" name="product_name" placeholder="Product Name">
+                        <input type="text" name="product_name" placeholder="Product Name"
+                            value="{{ $product->product_name }}">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-5">
-                        <label for="product_name" class="text-muted">Cost Price (GHC)</label>
-                    </div>
-                    <div class="col-7">
-                        <input type="number" name="cost_price" placeholder="Cost Price">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <div class="col-5">
-                        <label for="product_name" class="text-muted">Selling Price (GHC)</label>
+                        <label for="cost_price" class="text-muted">Cost Price</label>
                     </div>
                     <div class="col-7">
-                        <input type="number" name="selling_price" placeholder="Selling Price">
+                        <input type="text" name="cost_price" placeholder="Product Name"
+                            value="{{ $product->cost_price }}">
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <div class="col-5">
-                        <label for="product_name" class="text-muted">Quantity</label>
+                        <label for="selling_price" class="text-muted">Selling Price</label>
                     </div>
                     <div class="col-7">
-                        <input type="number" name="quantity" placeholder="Quantity">
+                        <input type="text" name="selling_price" placeholder="Product Name"
+                            value="{{ $product->selling_price }}">
                     </div>
                 </div>
-                <input type="submit" value="Add Product">
+
+
+                <div class="form-group">
+                    <div class="col-5">
+                        <label for="quantity" class="text-muted">Quantity</label>
+                    </div>
+                    <div class="col-7">
+                        <input type="text" name="quantity" placeholder="Product Name" value="{{ $product->quantity }}">
+                    </div>
+                </div>
+
+
+                <input type="submit" value=" Update {{ $product->product_name }}">
             </form>
         </div>
     </main>

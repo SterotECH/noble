@@ -8,7 +8,7 @@
         </div>
         <!-- --------------- END OF INSIGHTS ------------ -->
         <div class="recent-sales">
-            <h2>Add Product</h2>
+            <h2>Sales</h2>
             @if ($errors->any())
                 <div class="error">
                     @foreach ($errors->all() as $error)
@@ -19,25 +19,22 @@
                 </div>
             @endif
 
-            <form action="/products" Method="POST" enctype="multipart/form-data">
+            <form action="/products" Method="POST">
                 @csrf
 
-
-                <div class="form-group">
-                    <div class="col-5">
-                        <label for="product_name" class="text-muted">Image</label>
-                    </div>
-                    <div class="col-7">
-                        <input type="file" name="image" placeholder="Product Name">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <div class="col-5">
                         <label for="product_name" class="text-muted">Product Name</label>
                     </div>
                     <div class="col-7">
-                        <input type="text" name="product_name" placeholder="Product Name">
+                        <select name="product_name" id="">
+                            <option selected>Select Product</option>
+                            @foreach ($prod as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->product_name }}</option>
+                            @endforeach
+
+                        </select>
                     </div>
                 </div>
 

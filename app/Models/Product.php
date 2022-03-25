@@ -15,7 +15,7 @@ class Product extends Model
     #protected $timestamps = true;
 
     #protected $dateFormat = 'h:m:s';
-    protected $fillable = ['product_name', 'cost_price', 'selling_price', 'quantity'];
+    protected $fillable = ['product_name', 'cost_price', 'selling_price', 'quantity', 'image_path'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

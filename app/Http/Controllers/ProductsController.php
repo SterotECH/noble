@@ -14,10 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $key = 0;
-        $products = Product::paginate(
-            9
-        );
+        $products = Product::paginate(9);
         return view('products.index', ['products' => $products]);
     }
 
@@ -41,16 +38,21 @@ class ProductsController extends Controller
     {
         $request->validate([
             'product_name' => 'required | string ',
-            'cost_price' => 'required|integer|min:10|max:10000',
-            'selling_price' => 'required | min: 0 | max: 100',
-            'quantity' => 'required|min:1|max:100'
+            'cost_price' => 'required|integer|min:1|max:10000',
+            'selling_price' => 'required | min: 1| max: 100',
+            'quantity' => 'required|min:1|max:100',
+            'image_path' => 'mimes:png,jpeg,jpg | max:5048'
         ]);
+
+        $newImagName = time() . '_' . $request->product_name . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/product'), $newImagName);
 
         $product = Product::create([
             'product_name' => $request->input('product_name'),
             'cost_price' => $request->input('cost_price'),
             'selling_price' => $request->input('selling_price'),
             'quantity' => $request->input('quantity'),
+            'image_path' => $newImagName,
         ]);
 
         return redirect('/products');
@@ -93,7 +95,12 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validated();
+        $request->validate([
+            'product_name' => 'required | string ',
+            'cost_price' => 'required|integer|min:1|max:10000',
+            'selling_price' => 'required | min: 1 | max: 100',
+            'quantity' => 'required|min:1|max:100'
+        ]);
 
         $car = Product::where('id', $id)->update([
             'product_name' => $request->input('product_name'),

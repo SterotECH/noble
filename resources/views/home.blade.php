@@ -68,62 +68,38 @@
         </div>
         <!-- --------------- END OF INSIGHTS ------------ -->
         <div class="recent-sales">
-            <h2>Products</h2>
+            <h2>Products Running Out of Stock</h2>
             <table>
                 <thead>
                     <tr>
                         <th>S/N</th>
                         <th>Product Name</th>
-                        <th>Product Number</th>
-                        <th>Payment</th>
-                        <th>status</th>
+                        <th>Unit Price</th>
+                        <th>Selling Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Foldable Mini Drone</td>
-                        <td>85631</td>
-                        <td>Cash</td>
-                        <td class="warning">Pending</td>
-                        <td class="primary">Details</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Foldable Mini Drone</td>
-                        <td>85631</td>
-                        <td>Cash</td>
-                        <td class="warning">Pending</td>
-                        <td class="primary">Details</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Foldable Mini Drone</td>
-                        <td>85631</td>
-                        <td>Cash</td>
-                        <td class="warning">Pending</td>
-                        <td class="primary">Details</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Foldable Mini Drone</td>
-                        <td>85631</td>
-                        <td>Cash</td>
-                        <td class="warning">Pending</td>
-                        <td class="primary">Details</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Foldable Mini Drone</td>
-                        <td>85631</td>
-                        <td>Cash</td>
-                        <td class="warning">Pending</td>
-                        <td class="primary">Details</td>
-                    </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->cost_price }}</td>
+                            <td>{{ $product->selling_price }}</td>
+                            <td class="{{ $product->quantity <= 2 ? 'danger' : 'primary' }}">{{ $product->quantity }}
+                            </td>
+                            <td class="{{ $product->quantity <= 2 ? 'danger' : 'primary' }}">
+                                {{ $product->quantity <= 2 ? 'Out -of-Stock' : 'In-stock' }}</td>
+                            <td><a class="primary" href="/products/{{ $product->id }}">Details</a></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <a href="#">Todo Pagenation</a>
+            <div class="pages">
+                {{ $products->links() }}
+            </div>
         </div>
     </main>
 @endsection
