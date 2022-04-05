@@ -47,3 +47,4 @@ Route::get('/reports', [App\Http\Controllers\ReportsController::class, 'index'])
 Route::controller(
     Route::resource('/products', ProductsController::class)
 );
+
